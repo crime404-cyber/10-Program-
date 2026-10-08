@@ -1,0 +1,17 @@
+
+def is_bird(animal):
+    birds = ["Sparrow", "Parrot", "Crow"]
+    return animal in birds
+
+def normally_can_fly(animal):
+    return is_bird(animal)
+
+animals = ["Sparrow", "Parrot", "Crow", "Dog"]
+
+print("Analytical Learning Results:")
+
+for animal in animals:
+    if normally_can_fly(animal):
+        print(animal, "is a bird and can normally fly.")
+    else:
+        print(animal, "is not identified as a bird by the knowledge base.")
