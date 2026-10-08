@@ -1,0 +1,32 @@
+
+examples = [
+    {"animal": "Sparrow", "has_wings": True, "can_fly": True},
+    {"animal": "Parrot", "has_wings": True, "can_fly": True},
+    {"animal": "Crow", "has_wings": True, "can_fly": True}
+]
+
+all_have_wings = all(
+    example["has_wings"] for example in examples
+)
+
+all_can_fly = all(
+    example["can_fly"] for example in examples
+)
+
+print("Observed Examples:")
+for example in examples:
+    print(example)
+
+print("\nInduced Hypothesis:")
+
+if all_have_wings and all_can_fly:
+    print("IF an animal has wings,")
+    print("THEN it may be able to fly.")
+
+print("\nTest on a new example:")
+
+new_animal = {"animal": "Penguin", "has_wings": True}
+
+if new_animal["has_wings"]:
+    print(new_animal["animal"],
+          "matches the condition, but the hypothesis needs validation.")
