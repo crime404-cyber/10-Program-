@@ -1,0 +1,39 @@
+
+import pandas as pd
+
+data = pd.DataFrame({
+    "Weather": ["Sunny", "Sunny", "Rainy", "Rainy",
+                "Sunny", "Rainy"],
+    "Humidity": ["High", "Normal", "High", "Normal",
+                 "Normal", "High"],
+    "Play": ["No", "Yes", "No", "Yes", "Yes", "No"]
+})
+
+print("Training Dataset:")
+print(data)
+
+rules = []
+
+for attribute in ["Weather", "Humidity"]:
+    for value in data[attribute].unique():
+        subset = data[data[attribute] == value]
+
+        majority_class = subset["Play"].mode()[0]
+        accuracy = (subset["Play"] == majority_class).mean()
+
+        rule = {
+            "condition": f"{attribute} = {value}",
+            "prediction": majority_class,
+            "accuracy": accuracy
+        }
+
+        rules.append(rule)
+
+print("\nLearned Rules:")
+
+for rule in rules:
+    print(
+        f"IF {rule['condition']} "
+        f"THEN Play = {rule['prediction']} "
+        f"(training accuracy: {rule['accuracy']:.2f})"
+    )
