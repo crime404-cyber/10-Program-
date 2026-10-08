@@ -1,0 +1,35 @@
+
+parent_facts = [
+    ("Ravi", "Arun"),
+    ("Arun", "Kumar"),
+    ("Meena", "Arun"),
+    ("Lakshmi", "Priya")
+]
+
+def is_parent(person1, person2):
+    return (person1, person2) in parent_facts
+
+def is_grandparent(person1, person3):
+    for x, y in parent_facts:
+        for y2, z in parent_facts:
+            if person1 == x and y == y2 and z == person3:
+                return True
+    return False
+
+print("Parent Relationships:")
+
+for person1, person2 in parent_facts:
+    print(person1, "is a parent of", person2)
+
+print("\nGrandparent Relationships:")
+
+people = set()
+
+for person1, person2 in parent_facts:
+    people.add(person1)
+    people.add(person2)
+
+for person1 in people:
+    for person2 in people:
+        if is_grandparent(person1, person2):
+            print(person1, "is a grandparent of", person2)
